@@ -1,6 +1,5 @@
-const { baseDN } = require("../controllers/auth")
 const { ldapClient } = require("../services/service.ldap")
-
+const baseDN = "dc=eni,dc=univ,dc=mg"
 exports.modules = {
      bindFn: async(email, password) => {
          ldapClient.bind(`mail=${email},${baseDN}`,password,(bindError, result)=>{
