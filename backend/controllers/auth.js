@@ -2,8 +2,8 @@ const { ldapClient } = require('../services/service.ldap')
 const { bindFn, searchUser , addUser} = require('../utils/utils.auth')
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt')
-export const baseDN = "dc=eni,dc=univ,dc=mg"
-exports.modules = {
+const baseDN = "dc=eni,dc=univ,dc=mg"
+module.exports = {
     login: async (req, res, next) => {
           const { email , password  } = req.body
            try{
@@ -32,6 +32,7 @@ exports.modules = {
            }     
     },
     register: async (req, res, next) => {
+        try{
          const { username, email, password} = req.body
          const hashedPassword = await bcrypt.hash(password)
          const userEntry = {
@@ -40,7 +41,8 @@ exports.modules = {
               mail: email,
               userPassword: hashedPassword
          }
-         try{
+       
+             console.log('here')
               await addUser(userEntry);
               res.status(201).json({
                     status:201,
@@ -48,7 +50,7 @@ exports.modules = {
               })
 
          }catch(err){
-              res.status(500).json({message:"An server error occured"})
+              res.status(500).json({message:"A server error occured"})
          }
        
         
