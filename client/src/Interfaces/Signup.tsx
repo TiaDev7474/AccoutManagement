@@ -7,6 +7,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import { Link, useNavigate } from 'react-router-dom';
 import { IconButton } from '@mui/material';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import axios from 'axios';
 
 type Props = {}
 
@@ -22,9 +23,14 @@ const Signup = (props: Props) => {
   const HandleClickShow = () =>{
     setShow(an=>!an)
   }
-  const HandleClickConnect = () =>{
+  const HandleClickConnect = async() =>{
     console.log(information)
-    navigate('/')
+    const register = await axios.post('http://localhost:8000/auth/register',information)
+    if(register.status === 200){
+      navigate('/')
+    }else{
+      console.log(register)
+    }
   }
   const HandleChange = (e:ChangeEvent<HTMLInputElement>) =>{
     const name = e.target.name

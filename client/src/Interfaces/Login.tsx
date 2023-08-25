@@ -3,14 +3,16 @@ import Salut from '../assets/salut.png'
 import PersonIcon from '@mui/icons-material/Person';
 import LockIcon from '@mui/icons-material/Lock';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { IconButton } from '@mui/material';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import axios from 'axios';
 
 type Props = {}
 
 const Login = (props: Props) => {
   const [show,setShow] = useState(false)
+  const navigate = useNavigate()
   const [information,setInformation] = useState({
     username: '',
     password: ''
@@ -18,8 +20,14 @@ const Login = (props: Props) => {
   const HandleClickShow = () =>{
     setShow(an=>!an)
   }
-  const HandleClickConnect = () =>{
+  const HandleClickConnect = async() =>{
     console.log(information)
+    const register = await axios.post('http://localhost:8000/auth/login',information)
+    if(register.status === 200){
+      navigate('/')
+    }else{
+      console.log(register)
+    }
   }
   const HandleChange = (e:ChangeEvent<HTMLInputElement>) =>{
     const name = e.target.name
