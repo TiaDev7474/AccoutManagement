@@ -4,7 +4,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import AttachEmailIcon from '@mui/icons-material/AttachEmail';
 import LockIcon from '@mui/icons-material/Lock';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { IconButton } from '@mui/material';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
@@ -12,6 +12,7 @@ type Props = {}
 
 const Signup = (props: Props) => {
   const [show,setShow] = useState(false)
+  const navigate = useNavigate()
   const [information,setInformation] = useState({
     username: '',
     password: '',
@@ -23,6 +24,7 @@ const Signup = (props: Props) => {
   }
   const HandleClickConnect = () =>{
     console.log(information)
+    navigate('/')
   }
   const HandleChange = (e:ChangeEvent<HTMLInputElement>) =>{
     const name = e.target.name
@@ -75,12 +77,11 @@ const Signup = (props: Props) => {
                 }
                </IconButton>
             </div>
-            <div className="reset-password">
-                <Link to='/auth/signup' className='lien hover:underline'>Vous n' avez pas de compte?</Link>
-                <Link to='/auth/reset' className='lien hover:underline'>Mot de passe oublié ?</Link>
+            <div className="recupe-compte-signup">
+                <Link to='/auth/signup' className='lien hover:underline'>Vous avez deja de compte?</Link>
             </div>
             <div>
-                <button onClick={HandleClickConnect} className="btn"> S' inscrire </button>
+                <button onClick={HandleClickConnect} className="btn-signup"> S' inscrire </button>
             </div>
         </div>
     </div>
