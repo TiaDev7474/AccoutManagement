@@ -1,6 +1,7 @@
 import React, { ChangeEvent, useState } from 'react'
 import Salut from '../assets/salut.png'
 import PersonIcon from '@mui/icons-material/Person';
+import AttachEmailIcon from '@mui/icons-material/AttachEmail';
 import LockIcon from '@mui/icons-material/Lock';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { Link } from 'react-router-dom';
@@ -13,7 +14,9 @@ const Signup = (props: Props) => {
   const [show,setShow] = useState(false)
   const [information,setInformation] = useState({
     username: '',
-    password: ''
+    password: '',
+    confirm:'',
+    fname:''
   })
   const HandleClickShow = () =>{
     setShow(an=>!an)
@@ -39,16 +42,33 @@ const Signup = (props: Props) => {
             </div>
             <div className="message">
                 <p className="message-content">
-                    Bienvenue à vous .   Veuillez indiquee votre  username et mot de passe pour se connecter
+                    Bienvenue à vous .   Veuillez indiquee les information necessaire pour s' inscrire
                 </p>
             </div>
-            <div className="username-input">
+            <div className="username-input-signup">
+                <PersonIcon/>
+                <input type="text" placeholder="Nom et Prenom " name='fname' onChange={HandleChange}/>
+            </div>
+            <div className="username-input-signup">
                 <PersonIcon/>
                 <input type="text" placeholder="Nom d' utilisatuer" name='username' onChange={HandleChange}/>
             </div>
-            <div className="password-input">
+            <div className="username-input-signup">
+                <AttachEmailIcon/>
+                <input type=    "email" placeholder="Adresse  mail" name='email' onChange={HandleChange}/>
+            </div>
+            <div className="password-input-signup">
                <LockIcon/>
                 <input type={show ? 'text' : 'password'} placeholder="Mot de passe" onChange={HandleChange} name='password'/>
+               <IconButton onClick={HandleClickShow}>
+                {
+                  show ? <VisibilityIcon/> : <VisibilityOffIcon/>
+                }
+               </IconButton>
+            </div>
+            <div className="password-input-signup">
+               <LockIcon/>
+                <input type={show ? 'text' : 'password'} placeholder="Confirmer le mot de passe" onChange={HandleChange} name='confirm'/>
                <IconButton onClick={HandleClickShow}>
                 {
                   show ? <VisibilityIcon/> : <VisibilityOffIcon/>
@@ -60,7 +80,7 @@ const Signup = (props: Props) => {
                 <Link to='/auth/reset' className='lien hover:underline'>Mot de passe oublié ?</Link>
             </div>
             <div>
-                <button onClick={HandleClickConnect} className="btn"> Se Connecter </button>
+                <button onClick={HandleClickConnect} className="btn"> S' inscrire </button>
             </div>
         </div>
     </div>

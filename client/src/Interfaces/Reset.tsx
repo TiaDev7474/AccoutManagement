@@ -7,13 +7,9 @@ type Props = {}
 
 const Reset = (props: Props) => {
   const navigate = useNavigate()
-  const [show,setShow] = useState(false)
   const [information,setInformation] = useState({
     email: '',
   })
-  const HandleClickShow = () =>{
-    setShow(an=>!an)
-  }
   const HandleClickRecup = () =>{
     console.log(information)
     navigate('/auth/confirmation')
