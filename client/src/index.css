@@ -149,7 +149,17 @@ input:focus{
     font-size: 15px;
     margin-top: 40px;
 }
+.btn:hover{
+    cursor: pointer;
+}
 .lien{
     text-decoration: none;
     color: #000;
+}
+.recupe-compte{
+    margin-top: 40px;
+    width: 457px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
 }
