@@ -222,11 +222,9 @@ input:focus{
 }
 
 
-b {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f0f2f5;
+.b {
+    margin-top: 60px;
+    margin-bottom: 30px;
 }
 
 .profile-container {
